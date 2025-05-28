@@ -9,10 +9,16 @@ def show(image, window_name):
 
 #图像预处理
 #读取本地图片
-image = cv2.imread('imgs/2215925702.png')
+image = cv2.imread('imgs/img01.png')
 show(image, "image")
+print(image.shape)
 #裁剪
-image = image[100:180,265:465]
+a,b,c = image.shape
+xs = int(0.45*b)
+xe = int(0.75*b)
+ys = int(0.31*a)
+ye = int(0.7*a)
+image = image[ys:ye,xs:xe]
 #灰度化
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 # show(gray, "gray")
@@ -43,7 +49,7 @@ dilate2 = cv2.dilate(dilate, kernel, iterations=5)
 contours, hierarchy = cv2.findContours(dilate2, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 resize_copy = image.copy()
 res3 = cv2.drawContours(resize_copy, contours, -1, (255, 0, 0), 2)
-# show(res3, "res3")
+show(res3, "res3")
 ##############################预处理结束
 
 # 筛选轮廓区域，这里以面积为例
