@@ -74,7 +74,7 @@ res4 = cv2.drawContours(resize_copy, filtered_contours, -1, (255, 0, 0), 2)
 def sort_contours(contours):
     boundingBoxes = [cv2.boundingRect(c) for c in contours]
     (contours, boundingBoxes) = zip(*sorted(zip(contours, boundingBoxes),
-                                            key=lambda b: b[1][1], reverse=False))
+                                           key=lambda b: b[1][1], reverse=False))
     return contours
 
 # 对轮廓进行排序
